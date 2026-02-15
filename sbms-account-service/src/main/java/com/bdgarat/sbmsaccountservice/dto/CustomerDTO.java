@@ -1,0 +1,25 @@
+package com.bdgarat.sbmsaccountservice.dto;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+public class CustomerDTO {
+
+    private String id;
+    private String cu;
+    private String name;
+    private String email;
+    private String mobile;
+    private String address;
+
+
+    public static boolean isValid(CustomerDTO customerDTO) {
+        return customerDTO.getCu() != null && customerDTO.getName() != null && customerDTO.getEmail() != null;
+    }
+}

@@ -1,0 +1,13 @@
+Hola! Yo tenía el siguiente problema:
+
+Caused by: org.postgresql.util.PSQLException: FATAL: invalid value for parameter "TimeZone": "America/Buenos_Aires"
+
+Y lo pude solucionar haciendo lo siguiente:
+
+Al lado de las opciones "Run" y "Debug", aprietas el icono de ver más opciones > editar.
+
+Una vez que se te abre la ventana de edición, tienes que clickear en Modify options > Add VM options.
+
+Y en la nueva casilla le pones un valor Timezone válido, en mi caso coloqué lo siguiente:
+
+-Duser.timezone=America/Argentina/Buenos_Aires
