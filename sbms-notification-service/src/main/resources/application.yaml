@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: sbms-notification-service
+  mail:
+    host: ${MAIL_HOST:live.smtp.mailtrap.io}
+    port: ${MAIL_PORT:2525}
+    username: ${MAIL_USERNAME:api}
+    password: ${MAIL_PASSWORD}
+    protocol: smtp
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+  rabbitmq:
+    username: ${MQ_USERNAME:rabbitmq}
+    password: ${MQ_PASSWORD:root} # Establecer en variable de entorno si se corre en produccion!!!
+    host: ${MQ_HOST:localhost}
+    port: ${MQ_PORT:5672}
+server:
+  port: ${SERVER_PORT:8084}
+rabbitmq:
+  queue: sms_notification
+  exchange: sms_exchange
+  routingkey: sms_routingkey

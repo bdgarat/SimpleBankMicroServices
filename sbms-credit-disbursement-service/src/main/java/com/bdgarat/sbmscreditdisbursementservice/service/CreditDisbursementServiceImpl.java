@@ -49,7 +49,7 @@ public class CreditDisbursementServiceImpl implements ICreditDisbursementService
                     .accountNumber(creditDisbursementDTO.getAccountNumber())
                     .amount(creditDisbursementDTO.getAmount())
                     .customerCu(creditDisbursementDTO.getCustomerCu())
-                    .email("test@email.com") // variable estatica a fines practicas, cambiar luego!!!
+                    .email("garat.braian@gmail.com") // hardcode de mail solo a fines practicos, por limitacion de mailtrap. Cambiar luego!!!
                     .build();
             this.enqueueDequeService.publishMessage(creditDisbursementEvent);
             return savedEntity.getDto();
