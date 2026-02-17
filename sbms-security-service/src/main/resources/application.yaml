@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: sbms-security-service
+mcc-security:
+  applications:
+    - clientId: app01
+      clientSecret: "{noop}secretapp"
+    - clientId: web01
+      clientSecret: "{noop}secretweb"
+settings:
+  issuer-uri: ${URL_SECURITY_SERVICE:http://localhost:9000}
+server:
+  port: ${SERVER_PORT:9000}
