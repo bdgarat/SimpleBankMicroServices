@@ -1,6 +1,11 @@
 spring:
   main:
     web-application-type: reactive
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: ${URL_SECURITY_SERVICE_OAUTH:http://localhost:9000/oauth2/jwks}
   application:
     name: sbms-gateway-service
 server:

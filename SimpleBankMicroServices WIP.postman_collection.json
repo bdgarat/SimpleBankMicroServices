@@ -193,7 +193,7 @@
               "bearer": [
                 {
                   "key": "token",
-                  "value": "{{token_mcc}}",
+                  "value": "{{sbms_token}}",
                   "type": "string"
                 }
               ]
