@@ -10,9 +10,10 @@ Es un proyecto que encaré a modo de práctica de construcción de microservicio
 2. Spring boot
 3. Spring Data JPA (+ PostgreSQL)
 4. Spring Security + OAuth2
-5. RabbitMQ + AMPQ
-6. Docker Compose
-7. Mailtrap.io
+5. Spring Cloud (Circuit Breaker)
+6. RabbitMQ + AMPQ
+7. Docker Compose
+8. Mailtrap.io
 
 ## ¿Que recursos utilizaste para armarlo?
 Me basé principalmente en un tutorial de Stive Tech que encontré y me pareció super valioso, ya que explica a detenimiento los conceptos de microservicios que estaba buscando. El link a la playlist es el siguiente: [Playlist Stive Tech](https://www.youtube.com/playlist?list=PLkiIEFVLQKqjy2aIGfHlNAe51TC1wlIYt).
