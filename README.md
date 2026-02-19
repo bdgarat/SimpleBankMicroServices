@@ -10,7 +10,7 @@ Es un proyecto que encaré a modo de práctica de construcción de microservicio
 2. Spring boot 2025.1.0
 3. Spring Data JPA 2025.1.0 (+ PostgreSQL)
 4. Spring Security 2025.1.0 + OAuth2
-5. Spring Cloud 2025.1.0 (Circuit Breaker)
+5. Spring Cloud 2025.1.0 + Resilience4j (Circuit Breaker)
 6. RabbitMQ + AMPQ
 7. Docker Compose
 8. Mailtrap.io (Plataforma de envio de mails SMTP)

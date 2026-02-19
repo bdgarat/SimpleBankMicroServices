@@ -1,25 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="aa348300-98d4-484f-9473-ca1107116130" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/sbms-notification-service/.gitattributes" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sbms-notification-service/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sbms-notification-service/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sbms-notification-service/mvnw" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sbms-notification-service/mvnw.cmd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sbms-notification-service/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sbms-notification-service/src/main/java/com/bdgarat/sbmsnotificationservice/SbmsNotificationServiceApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sbms-notification-service/src/main/java/com/bdgarat/sbmsnotificationservice/config/MessageListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sbms-notification-service/src/main/java/com/bdgarat/sbmsnotificationservice/config/RabbitMQConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sbms-notification-service/src/main/java/com/bdgarat/sbmsnotificationservice/event/CreditDisbursementEvent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sbms-notification-service/src/main/java/com/bdgarat/sbmsnotificationservice/service/NotificationService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sbms-notification-service/src/main/resources/application.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sbms-notification-service/src/test/java/com/bdgarat/sbmsnotificationservice/SbmsNotificationServiceApplicationTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sbms-gateway-service/src/main/java/com/bdgarat/sbmsgatewayservice/controller/FallbackController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/diagrama_arq_sbms.drawio" beforeDir="false" afterPath="$PROJECT_DIR$/diagrama_arq_sbms.drawio" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/postgres-docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/postgres-docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sbms-credit-disbursement-service/src/main/java/com/bdgarat/sbmscreditdisbursementservice/service/CreditDisbursementServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/sbms-credit-disbursement-service/src/main/java/com/bdgarat/sbmscreditdisbursementservice/service/CreditDisbursementServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sbms-credit-disbursement-service/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/sbms-credit-disbursement-service/src/main/resources/application.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sbms-account-service/src/main/java/com/bdgarat/sbmsaccountservice/client/ICustomerRESTClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/sbms-account-service/src/main/java/com/bdgarat/sbmsaccountservice/client/ICustomerRESTClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sbms-account-service/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/sbms-account-service/src/main/resources/application.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sbms-gateway-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/sbms-gateway-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sbms-gateway-service/src/main/java/com/bdgarat/sbmsgatewayservice/config/GatewayConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/sbms-gateway-service/src/main/java/com/bdgarat/sbmsgatewayservice/config/GatewayConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sbms-gateway-service/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/sbms-gateway-service/src/main/resources/application.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,9 +27,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 7
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
   <component name="ProjectId" id="39oJVJPjxLGSPRR5JSci8CYTvlO" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -49,6 +42,10 @@
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "vue.rearranger.settings.migration": "true"
   }
@@ -69,6 +66,7 @@
       <option name="presentableId" value="Default" />
       <updated>1771356511141</updated>
       <workItem from="1771356512437" duration="34000" />
+      <workItem from="1771380578370" duration="4710000" />
     </task>
     <servers />
   </component>
