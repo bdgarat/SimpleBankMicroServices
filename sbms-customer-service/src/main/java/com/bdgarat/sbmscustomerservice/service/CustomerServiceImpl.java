@@ -6,6 +6,11 @@ import com.bdgarat.sbmscustomerservice.exceptions.NoSuchResourceFoundException;
 import com.bdgarat.sbmscustomerservice.repository.ICustomerRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.hibernate.annotations.Cache;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.Caching;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,19 +24,25 @@ public class CustomerServiceImpl implements ICustomerService{
 
     private ICustomerRepository customerRepository;
 
+    @Cacheable(value = "customersCu",
+            key = "#cu",
+            unless = "#result == null",
+            sync = true)
     @Transactional(readOnly = true)
     @Override
     public CustomerDTO getByCu(String cu) {
         log.info("Get customer by cu {}", cu);
-        Optional<CustomerEntity> en = this.customerRepository.findByCu(cu);
-        if(en.isPresent()) {
-            return en.get().getDto();
-        } else {
-            log.info("Customer with cu NOT found {}", cu);
-            return CustomerDTO.builder().build();
-        }
+        return customerRepository.findByCu(cu)
+                .map(CustomerEntity::getDto)
+                .orElse(null);
     }
 
+    @Cacheable(
+            value = "customersAll",
+            key = "'all'",
+            unless = "#result == null || #result.isEmpty()",
+            sync = true
+    )
     @Transactional(readOnly = true)
     @Override
     public List<CustomerDTO> getAll() {
@@ -42,6 +53,11 @@ public class CustomerServiceImpl implements ICustomerService{
                 .toList();
     }
 
+    @CacheEvict(value = "customersAll", key = "'all'")
+    @Caching(put = {
+            @CachePut(value = "customersId", key = "#result.id"),
+            @CachePut(value = "customersCu", key = "#result.cu")
+    })
     @Transactional
     @Override
     public CustomerDTO add(CustomerDTO customerDTO) {
@@ -56,6 +72,12 @@ public class CustomerServiceImpl implements ICustomerService{
         return this.customerRepository.save(customerEntity).getDto();
     }
 
+
+    @Caching(put = {
+            @CachePut(value = "customersId", key = "#result.id"),
+            @CachePut(value = "customersCu", key = "#result.cu")
+    })
+    @CacheEvict(value = "customersAll", key = "'all'")
     @Transactional
     @Override
     public CustomerDTO update(CustomerDTO customerDTO) {
@@ -71,6 +93,12 @@ public class CustomerServiceImpl implements ICustomerService{
         }
     }
 
+
+    @Caching(evict = {
+            @CacheEvict(value = "customersAll", key = "'all'"),
+            @CacheEvict(value = "customersId", key = "#customerDTO.id"),
+            @CacheEvict(value = "customersCu", key = "#customerDTO.cu")
+    })
     @Transactional
     @Override
     public void delete(CustomerDTO customerDTO) {
@@ -84,16 +112,16 @@ public class CustomerServiceImpl implements ICustomerService{
         }
     }
 
+    @Cacheable(value = "customersId",
+            key = "#id",
+            unless = "#result == null",
+            sync = true)
     @Transactional(readOnly = true)
     @Override
     public CustomerDTO getById(String id) {
         log.info("Get customer by id {}", id);
-        Optional<CustomerEntity> en = this.customerRepository.findById(id);
-        if(en.isPresent()) {
-            return en.get().getDto();
-        } else {
-            log.info("Customer with id does NOT exist: {}", id);
-            return CustomerDTO.builder().build();
-        }
+        return customerRepository.findById(id)
+                .map(CustomerEntity::getDto)
+                .orElse(null);
     }
 }

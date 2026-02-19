@@ -1,8 +1,7 @@
-version: '3.9'
 services:
   postgres:
     image: postgres
-    container_name: postgres-data
+    container_name: sbms-postgres-data
     restart: always
     environment:
       POSTGRES_USER: postgres
@@ -13,9 +12,9 @@ services:
     ports:
       - '5432:5432'
 
-rabbitmq:
+  rabbitmq:
     image: rabbitmq:latest
-    container_name: rabbitmq
+    container_name: sbms-rabbitmq
     restart: always
     ports:
       - 5672:5672
@@ -30,6 +29,19 @@ rabbitmq:
       - rabbitmq-lib:/var/lib/rabbitmq/
       - rabbitmq-log:/var/log/rabbitmq
 
+  redis:
+    image: redis:7.4-alpine
+    container_name: sbms-redis-cache
+    restart: always
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data  
+
+configs:
+  rabbitmq-plugins:
+    content: "[rabbitmq_management]."  
+    
 volumes:
   postgres-data:
     external: true
@@ -37,4 +49,6 @@ volumes:
   rabbitmq-lib:
     driver: local
   rabbitmq-log:
+    driver: local
+  redis_data:
     driver: local

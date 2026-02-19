@@ -22,7 +22,7 @@ public class CustomerEntity implements IMapper<CustomerDTO>, Serializable {
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "id", updatable = false, nullable = false, length = 60)
     private String id;
-    @Column(name = "cu", nullable = false, length = 20, unique = true)
+    @Column(name = "cu", updatable = false, nullable = false, length = 20, unique = true)
     private String cu;
     @Column(name = "name", nullable = false, length = 100)
     private String name;
