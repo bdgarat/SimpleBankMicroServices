@@ -8,8 +8,10 @@ import com.bdgarat.sbmsaccountservice.entity.AccountEntity;
 import com.bdgarat.sbmsaccountservice.repository.IAccountRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -50,10 +52,6 @@ public class AccountServiceImpl implements IAccountService {
             log.error("Error adding account to account repository: {}", responseEntityNewCustomerDTO);
             return new AccountDTO();
         }
-
-
-
-
     }
 
     @Override
@@ -72,11 +70,17 @@ public class AccountServiceImpl implements IAccountService {
         accountRepository.deleteById(accountDTO.getId());
     }
 
+    @Cacheable(value = "accountsId",
+            key = "#id",
+            unless = "#result == null",
+            sync = true)
+    @Transactional(readOnly = true)
     @Override
     public AccountDTO getById(String id) {
         log.info("Get account by id {}", id);
-
-        return null;
+        return accountRepository.findById(id)
+                .map(AccountEntity::getDto)
+                .orElse(null);
     }
 
     @Override

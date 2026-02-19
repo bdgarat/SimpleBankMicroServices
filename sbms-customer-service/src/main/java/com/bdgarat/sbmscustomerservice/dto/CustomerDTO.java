@@ -18,8 +18,4 @@ public class CustomerDTO {
     private String mobile;
     private String address;
 
-
-    public static boolean isValid(CustomerDTO customerDTO) {
-        return customerDTO.getCu() != null && customerDTO.getName() != null && customerDTO.getEmail() != null;
-    }
 }

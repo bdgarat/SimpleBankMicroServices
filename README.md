@@ -12,8 +12,9 @@ Es un proyecto que encaré a modo de práctica de construcción de microservicio
 4. Spring Security 2025.1.0 + OAuth2
 5. Spring Cloud 2025.1.0 + Resilience4j (Circuit Breaker)
 6. RabbitMQ + AMPQ
-7. Docker Compose
-8. Mailtrap.io (Plataforma de envio de mails SMTP)
+7. Database caching using Redis
+8. Docker Compose
+9. Mailtrap.io (Plataforma de envio de mails SMTP)
 
 ## ¿Que recursos utilizaste para armarlo?
 Me basé principalmente en un tutorial de Stive Tech que encontré y me pareció super valioso, ya que explica a detenimiento los conceptos de microservicios que estaba buscando. El link a la playlist es el siguiente: [Playlist Stive Tech](https://www.youtube.com/playlist?list=PLkiIEFVLQKqjy2aIGfHlNAe51TC1wlIYt).

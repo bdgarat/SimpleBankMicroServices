@@ -64,7 +64,6 @@ public class CustomerServiceImpl implements ICustomerService{
         log.info("Add customer {}", customerDTO);
         boolean exists = this.customerRepository.existsById(customerDTO.getCu());
         if(exists) {
-            log.warn("Customer with id does already exist: {}", customerDTO.getId());
             throw new RuntimeException("Registry already found");
         }
         CustomerEntity customerEntity = new CustomerEntity();
@@ -88,7 +87,6 @@ public class CustomerServiceImpl implements ICustomerService{
             customer.setData(customerDTO);
             return this.customerRepository.save(customer).getDto();
         } else {
-            log.warn("Customer with id does NOT exist: {}", customerDTO.getId());
             throw new NoSuchResourceFoundException("Registry NOT found");
         }
     }
@@ -107,7 +105,6 @@ public class CustomerServiceImpl implements ICustomerService{
         if(customerEntity.isPresent()) {
             this.customerRepository.delete(customerEntity.get());
         } else {
-            log.warn("Customer with id does NOT exist: {}", customerDTO.getId());
             throw new NoSuchResourceFoundException("Registry NOT found");
         }
     }
