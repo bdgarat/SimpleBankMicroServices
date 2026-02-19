@@ -5,14 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="aa348300-98d4-484f-9473-ca1107116130" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/sbms-gateway-service/src/main/java/com/bdgarat/sbmsgatewayservice/controller/FallbackController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sbms-account-service/src/main/java/com/bdgarat/sbmsaccountservice/client/ICustomerRESTClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/sbms-account-service/src/main/java/com/bdgarat/sbmsaccountservice/client/ICustomerRESTClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sbms-account-service/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/sbms-account-service/src/main/resources/application.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sbms-gateway-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/sbms-gateway-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sbms-gateway-service/src/main/java/com/bdgarat/sbmsgatewayservice/config/GatewayConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/sbms-gateway-service/src/main/java/com/bdgarat/sbmsgatewayservice/config/GatewayConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sbms-gateway-service/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/sbms-gateway-service/src/main/resources/application.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
