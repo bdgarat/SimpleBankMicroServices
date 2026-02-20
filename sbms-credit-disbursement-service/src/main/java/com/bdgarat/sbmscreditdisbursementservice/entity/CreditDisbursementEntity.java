@@ -1,7 +1,5 @@
 package com.bdgarat.sbmscreditdisbursementservice.entity;
 
-import com.bdgarat.sbmscreditdisbursementservice.dto.CreditDisbursementDTO;
-import com.bdgarat.sbmscreditdisbursementservice.util.IMapper;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,7 +12,7 @@ import java.math.BigDecimal;
 @Data
 @NoArgsConstructor
 @Table(name = "t_credit_disbursement")
-public class CreditDisbursementEntity implements IMapper<CreditDisbursementDTO>, Serializable {
+public class CreditDisbursementEntity implements Serializable {
 
 
     @Serial
@@ -36,7 +34,7 @@ public class CreditDisbursementEntity implements IMapper<CreditDisbursementDTO>,
     private String customerCu;
 
 
-    @Override
+    /*@Override
     public CreditDisbursementDTO getDto() {
         return CreditDisbursementDTO.builder()
                 .id(this.id)
@@ -56,5 +54,5 @@ public class CreditDisbursementEntity implements IMapper<CreditDisbursementDTO>,
         this.interestRate = creditDisbursementDTO.getInterestRate();
         this.accountNumber = creditDisbursementDTO.getAccountNumber();
         this.customerCu = creditDisbursementDTO.getCustomerCu();
-    }
+    }*/
 }

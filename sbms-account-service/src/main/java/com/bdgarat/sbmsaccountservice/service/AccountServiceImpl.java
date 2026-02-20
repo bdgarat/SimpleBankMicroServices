@@ -5,10 +5,16 @@ import com.bdgarat.sbmsaccountservice.dto.AccountDTO;
 import com.bdgarat.sbmsaccountservice.dto.CustomerDTO;
 import com.bdgarat.sbmsaccountservice.dto.DepositDTO;
 import com.bdgarat.sbmsaccountservice.entity.AccountEntity;
+import com.bdgarat.sbmsaccountservice.exceptions.ExternalServiceUnreacheable;
+import com.bdgarat.sbmsaccountservice.exceptions.NoSuchResourceFoundException;
+import com.bdgarat.sbmsaccountservice.mappers.AccountMapper;
 import com.bdgarat.sbmsaccountservice.repository.IAccountRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.Caching;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,74 +31,107 @@ public class AccountServiceImpl implements IAccountService {
 
     private ICustomerRESTClient customerRESTClient;
 
-    @Override
-    public List<AccountDTO> getAll() {
-        return this.accountRepository.findAll().stream().map(AccountEntity::getDto).toList();
-    }
-
-    @Override
-    public AccountDTO add(AccountDTO accountDTO) {
-
-        if(accountDTO.getId() != null) {
-            boolean exists = this.accountRepository.existsById(accountDTO.getId());
-            if (exists) {
-                log.warn("Account with id does already exist: {}", accountDTO.getId());
-                throw new RuntimeException("Registry already found");
-            }
-        }
-        ResponseEntity<CustomerDTO> responseEntityNewCustomerDTO = this.customerRESTClient.add(accountDTO.getCustomer());
-        if(responseEntityNewCustomerDTO.getStatusCode().is2xxSuccessful()) {
-            log.info("Customer added successfully");
-            accountDTO.setCustomer(responseEntityNewCustomerDTO.getBody());
-            AccountEntity accountEntity = new AccountEntity();
-            accountEntity.setData(accountDTO);
-            log.info("Add account to account repository: {}", accountDTO);
-            return this.accountRepository.save(accountEntity).getDto();
-        } else {
-            log.error("Error adding account to account repository: {}", responseEntityNewCustomerDTO);
-            return new AccountDTO();
-        }
-    }
-
-    @Override
-    public AccountDTO update(AccountDTO accountDTO) {
-        return null;
-    }
-
-    @Override
-    public void delete(AccountDTO accountDTO) {
-        log.info("remove account from repository: {}", accountDTO);
-        boolean exists = this.accountRepository.existsById(accountDTO.getId());
-        if(!exists) {
-            log.warn("Account with id does not exist: {}", accountDTO.getId());
-            throw new RuntimeException("Registry not found");
-        }
-        accountRepository.deleteById(accountDTO.getId());
-    }
+    private AccountMapper accountMapper;
 
     @Cacheable(value = "accountsId",
             key = "#id",
-            unless = "#result == null",
             sync = true)
     @Transactional(readOnly = true)
     @Override
     public AccountDTO getById(String id) {
         log.info("Get account by id {}", id);
         return accountRepository.findById(id)
-                .map(AccountEntity::getDto)
+                .map(accountMapper::toDto)
                 .orElse(null);
     }
 
+    /*@Cacheable(
+            value = "accountsAll",
+            key = "'all'",
+            sync = true
+    )*/
+    @Transactional(readOnly = true)
+    @Override
+    public List<AccountDTO> getAll() {
+        return this.accountRepository.findAll().
+                stream().
+                map(accountMapper::toDto).
+                toList();
+    }
+
+    //@CacheEvict(value = "accountsAll", key = "'all'")
+    @CachePut(value = "accountsId", key = "#result.id")
+    @Transactional
+    @Override
+    public AccountDTO add(AccountDTO accountDTO) {
+        log.info("Add account {}", accountDTO);
+        CustomerDTO customerResponse;
+        // Sync call to customer-service
+        ResponseEntity<CustomerDTO> responseEntityGetCustomerDTO = this.customerRESTClient.getByCu(accountDTO.customer().cu());
+        if(responseEntityGetCustomerDTO.getStatusCode().is2xxSuccessful()) {
+            log.info("Customer fetched successfully");
+            customerResponse = responseEntityGetCustomerDTO.getBody();
+        } else { // If the customer does not exists, we create it
+            // Sync call to customer-service
+            ResponseEntity<CustomerDTO> responseEntityNewCustomerDTO = this.customerRESTClient.add(accountDTO.customer());
+            if(responseEntityNewCustomerDTO.getStatusCode().is2xxSuccessful()) {
+                log.info("Customer added successfully");
+                customerResponse = responseEntityNewCustomerDTO.getBody();
+            } else {
+                String error = "Could not fetch nor add the Customer";
+                log.debug(error);
+                throw new ExternalServiceUnreacheable(error);
+            }
+        }
+        AccountEntity accountEntity = accountMapper.toEntity(accountDTO);
+        accountEntity.setCustomerCu(customerResponse.cu());
+        log.info("Add account to account repository: {}", accountDTO);
+        return accountMapper.toDto(this.accountRepository.save(accountEntity));
+    }
+
+    //@CacheEvict(value = "accountsAll", key = "'all'")
+    @CachePut(value = "accountsId", key = "#result.id")
+    @Transactional
+    @Override
+    public AccountDTO update(AccountDTO accountDTO) {
+        // Sync call to customer-service
+        ResponseEntity<CustomerDTO> responseEntityUpdatedCustomerDTO = this.customerRESTClient.update(accountDTO.customer());
+        if(responseEntityUpdatedCustomerDTO.getStatusCode().is2xxSuccessful()) {
+            log.info("Customer updated successfully");
+
+            AccountEntity accountEntity = accountMapper.toEntity(accountDTO);
+            accountEntity.setCustomerCu(responseEntityUpdatedCustomerDTO.getBody().cu());
+            log.info("Update account to account repository: {}", accountDTO);
+            return accountMapper.toDto(this.accountRepository.save(accountEntity));
+        } else {
+            throw new ExternalServiceUnreacheable("Error updating account to account repository: " +  responseEntityUpdatedCustomerDTO);
+        }
+    }
+
+    /*@Caching(evict = {
+            //@CacheEvict(value = "accountsAll", key = "'all'"),
+
+    })*/
+    @CacheEvict(value = "accountsId", key = "#accountDTO.id")
+    @Transactional
+    @Override
+    public void delete(AccountDTO accountDTO) {
+        log.info("remove account from repository: {}", accountDTO);
+        accountRepository.deleteById(accountDTO.id());
+    }
+
+    @Transactional
     @Override
     public AccountDTO depositInAccount(DepositDTO depositDTO) {
         log.info("Deposit in customer to account {}", depositDTO);
-        Optional<AccountEntity> accountEntityOptional = this.accountRepository.findByAccountNumberAndCustomerCu(depositDTO.getAccountNumber(), depositDTO.getCustomerCu());
+        Optional<AccountEntity> accountEntityOptional = this.accountRepository.findByAccountNumberAndCustomerCu(depositDTO.accountNumber(), depositDTO.customerCu());
         if(accountEntityOptional.isPresent()) {
             // deposit in account
             AccountEntity accountEntity = accountEntityOptional.get();
-            accountEntity.setAccountBalance(accountEntity.getAccountBalance().add(depositDTO.getAmount()));
-            return this.accountRepository.save(accountEntity).getDto();
+            accountEntity.setAccountBalance(accountEntity.getAccountBalance().add(depositDTO.amount()));
+            return accountMapper.toDto(this.accountRepository.save(accountEntity));
+        } else {
+            throw new NoSuchResourceFoundException("No account found with account number " + depositDTO.accountNumber() + " and customer cu " + depositDTO.customerCu());
         }
-        return AccountDTO.builder().build();
     }
 }

@@ -8,4 +8,6 @@ import java.util.Optional;
 public interface ICustomerRepository extends JpaRepository<CustomerEntity, String> {
 
     Optional<CustomerEntity> findByCu(String cu);
+
+    boolean existsByCu(String cu);
 }

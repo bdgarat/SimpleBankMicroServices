@@ -1,7 +1,6 @@
 package com.bdgarat.sbmscustomerservice.entity;
 
 import com.bdgarat.sbmscustomerservice.dto.CustomerDTO;
-import com.bdgarat.sbmscustomerservice.util.IMapper;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,7 +12,7 @@ import java.io.Serializable;
 @Table(name = "t_customer")
 @Data
 @NoArgsConstructor
-public class CustomerEntity implements IMapper<CustomerDTO>, Serializable {
+public class CustomerEntity implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 1L;
@@ -33,6 +32,7 @@ public class CustomerEntity implements IMapper<CustomerDTO>, Serializable {
     @Column(name = "mobile", length = 9)
     private String mobile;
 
+    /*
     @Override
     public CustomerDTO getDto() {
         return CustomerDTO.builder()
@@ -54,4 +54,5 @@ public class CustomerEntity implements IMapper<CustomerDTO>, Serializable {
         this.email = customerDTO.getEmail();
         this.mobile = customerDTO.getMobile();
     }
+     */
 }

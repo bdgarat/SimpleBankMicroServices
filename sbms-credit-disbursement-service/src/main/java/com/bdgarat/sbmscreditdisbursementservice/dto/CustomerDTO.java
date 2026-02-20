@@ -1,25 +1,8 @@
 package com.bdgarat.sbmscreditdisbursementservice.dto;
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
-@Data
 @Builder
-@NoArgsConstructor
-@AllArgsConstructor
-public class CustomerDTO {
+public record CustomerDTO(String id, String cu, String name, String email, String mobile, String address){
 
-    private String id;
-    private String cu;
-    private String name;
-    private String email;
-    private String mobile;
-    private String address;
-
-
-    public static boolean isValid(CustomerDTO customerDTO) {
-        return customerDTO.getCu() != null && customerDTO.getName() != null && customerDTO.getEmail() != null;
-    }
 }

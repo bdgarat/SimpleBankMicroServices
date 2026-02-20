@@ -11,6 +11,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 @FeignClient(name = "${feign.client.account.name}", url="${feign.client.account.url}")
 public interface IAccountRESTClient {
 
-    @PutMapping
+    @PutMapping("/deposit")
     ResponseEntity<AccountDTO> depositInAccount(@RequestBody DepositDTO depositDTO);
 }

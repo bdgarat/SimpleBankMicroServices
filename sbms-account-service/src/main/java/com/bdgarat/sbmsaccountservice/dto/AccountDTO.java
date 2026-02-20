@@ -1,21 +1,10 @@
 package com.bdgarat.sbmsaccountservice.dto;
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 
-@Data
 @Builder
-@NoArgsConstructor
-@AllArgsConstructor
-public class AccountDTO {
+public record AccountDTO (String id, String accountNumber, String accountName, BigDecimal accountBalance, CustomerDTO customer) {
 
-    private String id;
-    private String accountNumber;
-    private String accountName;
-    private BigDecimal accountBalance;
-    private CustomerDTO customer;
 }

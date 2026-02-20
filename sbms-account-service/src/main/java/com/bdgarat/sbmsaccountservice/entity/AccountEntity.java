@@ -1,8 +1,5 @@
 package com.bdgarat.sbmsaccountservice.entity;
 
-import com.bdgarat.sbmsaccountservice.dto.AccountDTO;
-import com.bdgarat.sbmsaccountservice.dto.CustomerDTO;
-import com.bdgarat.sbmsaccountservice.util.IMapper;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,7 +12,7 @@ import java.math.BigDecimal;
 @Table(name = "t_account")
 @Data
 @NoArgsConstructor
-public class AccountEntity implements IMapper<AccountDTO>, Serializable {
+public class AccountEntity implements Serializable {
 
 
     @Serial
@@ -31,9 +28,10 @@ public class AccountEntity implements IMapper<AccountDTO>, Serializable {
     private String accountNumber;
     @Column(name = "account_balance", nullable = false, precision = 10, scale = 2)
     private BigDecimal accountBalance;
-    @Column(name = "customer_cu", nullable = false, length = 20)
+    @Column(name = "customer_cu", nullable = false, updatable = false, length = 20)
     private String customerCu;
 
+    /*
     @Override
     public AccountDTO getDto() {
         return AccountDTO.builder()
@@ -54,5 +52,5 @@ public class AccountEntity implements IMapper<AccountDTO>, Serializable {
         this.accountNumber = accountDTO.getAccountNumber();
         this.accountBalance = accountDTO.getAccountBalance();
         this.customerCu = accountDTO.getCustomer().getCu();
-    }
+    }*/
 }
