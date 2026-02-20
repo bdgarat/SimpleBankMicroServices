@@ -81,7 +81,7 @@ public class AuthorizationServerConfig {
                                         .clientAuthenticationMethod(ClientAuthenticationMethod.CLIENT_SECRET_BASIC)
                                         .authorizationGrantType(AuthorizationGrantType.CLIENT_CREDENTIALS)
                                         .scope(OidcScopes.OPENID)
-                                        .scope("mcc-token")
+                                        .scope("sbms-token")
                                         .clientSettings(ClientSettings.builder().requireAuthorizationConsent(true).build())
                                         .build()
                 ).toList();

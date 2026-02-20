@@ -34,7 +34,7 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "http://localhost:8083/customers/cu/72155722",
+              "raw": "http://localhost:8083/customers/cu/72155727",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -43,7 +43,7 @@
               "path": [
                 "customers",
                 "cu",
-                "72155722"
+                "72155727"
               ]
             }
           },
@@ -56,7 +56,84 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\n    \"cu\": \"72155723\",\n    \"name\": \"John Doe\",\n    \"address\": \"Av. del Libertador 1300\",\n    \"email\": \"john.doe@testmail.com\",\n    \"mobile\": \"999999999\"\n}",
+              "raw": "{\n    \"cu\": \"72155729\",\n    \"name\": \"John Doe\",\n    \"address\": \"Av. del Libertador 1300\",\n    \"email\": \"john.doe@testmail.com\",\n    \"mobile\": \"999999999\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8083/customers",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8083",
+              "path": [
+                "customers"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getById",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8083/customers/id/6925bae8-5ba8-4153-9d17-3064a34fd37a",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8083",
+              "path": [
+                "customers",
+                "id",
+                "6925bae8-5ba8-4153-9d17-3064a34fd37a"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"id\": \"6925bae8-5ba8-4153-9d17-3064a34fd37a\",\r\n    \"cu\": \"72155727\",\r\n    \"name\": \"John Doe2\",\r\n    \"email\": \"john.doe2@testmail.com\",\r\n    \"mobile\": \"999999998\",\r\n    \"address\": \"Av. del Libertador 1400\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8083/customers",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8083",
+              "path": [
+                "customers"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"id\": \"6925bae8-5ba8-4153-9d17-3064a34fd37a\",\r\n    \"cu\": \"72155727\",\r\n    \"name\": \"John Doe\",\r\n    \"email\": \"john.doe@testmail.com\",\r\n    \"mobile\": \"999999999\",\r\n    \"address\": \"Av. del Libertador 1300\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -108,35 +185,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\n    \"accountNumber\": \"1008767676567\",\n    \"accountName\": \"SIMPLE\",\n    \"accountBalance\": 0.0,\n    \"customer\": {\n        \"cu\": \"72155722\"\n    }\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "http://localhost:8081/accounts",
-              "protocol": "http",
-              "host": [
-                "localhost"
-              ],
-              "port": "8081",
-              "path": [
-                "accounts"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "add-v2",
-          "request": {
-            "method": "POST",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n    \"accountNumber\": \"1008767676567\",\n    \"accountName\": \"SIMPLE\",\n    \"accountBalance\": 0.0,\n    \"customer\": {\n        \"cu\": \"72155723\",\n        \"name\": \"John Doe\",\n        \"address\": \"Av. del Libertador 1300\",\n        \"email\": \"john.doe@testmail.com\",\n        \"mobile\": \"999999999\"\n    }\n}",
+              "raw": "{\n    \"accountNumber\": \"1008767676567\",\n    \"accountName\": \"SIMPLE\",\n    \"accountBalance\": 0.0,\n    \"customer\": {\n        \"cu\": \"72155715\",\n        \"name\": \"John Doe\",\n        \"address\": \"Av. del Libertador 1300\",\n        \"email\": \"john.doe@testmail.com\",\n        \"mobile\": \"999999999\"\n    }\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -172,14 +221,15 @@
               }
             },
             "url": {
-              "raw": "http://localhost:8081/accounts",
+              "raw": "http://localhost:8081/accounts/deposit",
               "protocol": "http",
               "host": [
                 "localhost"
               ],
               "port": "8081",
               "path": [
-                "accounts"
+                "accounts",
+                "deposit"
               ]
             }
           },
@@ -193,7 +243,7 @@
               "bearer": [
                 {
                   "key": "token",
-                  "value": "{{sbms_token}}",
+                  "value": "{{token_mcc}}",
                   "type": "string"
                 }
               ]
@@ -210,6 +260,85 @@
               "path": [
                 "actuator",
                 "circuitbreakers"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getById",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8081/accounts/id/b794b0bb-6b85-4f9a-aac5-ac3d0ff20e28",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8081",
+              "path": [
+                "accounts",
+                "id",
+                "b794b0bb-6b85-4f9a-aac5-ac3d0ff20e28"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"accountNumber\": \"1008767676567\",\r\n    \"accountName\": \"SIMPLE\",\r\n    \"accountBalance\": 0.0,\r\n    \"customer\": {\r\n        \"cu\": \"72155715\",\r\n        \"name\": \"John Doe\",\r\n        \"address\": \"Av. del Libertador 1300\",\r\n        \"email\": \"john.doe@testmail.com\",\r\n        \"mobile\": \"999999999\"\r\n    }\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8081/accounts/id",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8081",
+              "path": [
+                "accounts",
+                "id"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"accountNumber\": \"1008767676567\",\r\n    \"accountName\": \"SIMPLE\",\r\n    \"accountBalance\": 0.0,\r\n    \"customer\": {\r\n        \"cu\": \"72155715\",\r\n        \"name\": \"John Doe\",\r\n        \"address\": \"Av. del Libertador 1300\",\r\n        \"email\": \"john.doe@testmail.com\",\r\n        \"mobile\": \"999999999\"\r\n    }\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8081/accounts/id",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8081",
+              "path": [
+                "accounts",
+                "id"
               ]
             }
           },
@@ -262,6 +391,27 @@
               "port": "8082",
               "path": [
                 "credit-disbursements"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getById",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8082/credit-disbursements/id/21364007-049d-4938-bea6-f6efdc6cce3a",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8082",
+              "path": [
+                "credit-disbursements",
+                "id",
+                "21364007-049d-4938-bea6-f6efdc6cce3a"
               ]
             }
           },
@@ -423,7 +573,7 @@
       ]
     },
     {
-      "name": "actuator(WIP)",
+      "name": "actuator",
       "item": [
         {
           "name": "actuator",
@@ -506,36 +656,6 @@
                 "localhost"
               ],
               "port": "8080",
-              "path": [
-                "actuator",
-                "circuitbreakers"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "actuator/circuitbreakers-accounts",
-          "request": {
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{sbms_token}}",
-                  "type": "string"
-                }
-              ]
-            },
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "http://localhost:8081/actuator/circuitbreakers",
-              "protocol": "http",
-              "host": [
-                "localhost"
-              ],
-              "port": "8081",
               "path": [
                 "actuator",
                 "circuitbreakers"
