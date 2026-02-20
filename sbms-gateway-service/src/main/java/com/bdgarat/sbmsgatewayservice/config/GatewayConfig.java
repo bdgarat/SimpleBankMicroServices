@@ -29,6 +29,7 @@ public class GatewayConfig {
                 .mapToObj(String::valueOf)
                 .collect(Collectors.toSet());
     }
+
     @Bean
     public RouteLocator customRouteLocator(RouteLocatorBuilder builder) {
         Set<String> statusCodes5xx = getAll5xxStatusCodes();

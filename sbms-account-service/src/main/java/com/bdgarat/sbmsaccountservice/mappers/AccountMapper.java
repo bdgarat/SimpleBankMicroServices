@@ -1,7 +1,7 @@
 package com.bdgarat.sbmsaccountservice.mappers;
 
-import com.bdgarat.sbmsaccountservice.dto.AccountDTO;
-import com.bdgarat.sbmsaccountservice.entity.AccountEntity;
+import com.bdgarat.sbmsaccountservice.dtos.AccountDTO;
+import com.bdgarat.sbmsaccountservice.entities.AccountEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 

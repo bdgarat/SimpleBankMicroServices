@@ -1,6 +1,6 @@
 package com.bdgarat.sbmscreditdisbursementservice.config;
 
-import com.bdgarat.sbmscreditdisbursementservice.event.CreditDisbursementEvent;
+import com.bdgarat.sbmscreditdisbursementservice.events.CreditDisbursementEvent;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;

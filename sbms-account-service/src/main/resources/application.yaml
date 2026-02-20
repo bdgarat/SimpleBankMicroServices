@@ -28,7 +28,7 @@ server:
 feign:
   client:
     customer:
-      name: customer-service
+      name: customer-services
       url: http://localhost:8083/customers
     config:
       default:
@@ -58,6 +58,8 @@ resilience4j:
         wait-duration-in-open-state: 10s
         permitted-number-of-calls-in-half-open-state: 2
   timelimiter:
+    metrics:
+      enabled: true
     instances:
       customerCircuitBreaker:
         timeout-duration: 5s

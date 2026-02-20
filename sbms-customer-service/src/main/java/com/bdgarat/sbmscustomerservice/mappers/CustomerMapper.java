@@ -1,7 +1,7 @@
 package com.bdgarat.sbmscustomerservice.mappers;
 
-import com.bdgarat.sbmscustomerservice.dto.CustomerDTO;
-import com.bdgarat.sbmscustomerservice.entity.CustomerEntity;
+import com.bdgarat.sbmscustomerservice.dtos.CustomerDTO;
+import com.bdgarat.sbmscustomerservice.entities.CustomerEntity;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")

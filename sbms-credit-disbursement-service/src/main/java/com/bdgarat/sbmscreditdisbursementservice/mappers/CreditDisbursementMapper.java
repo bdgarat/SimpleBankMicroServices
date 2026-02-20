@@ -1,7 +1,7 @@
 package com.bdgarat.sbmscreditdisbursementservice.mappers;
 
-import com.bdgarat.sbmscreditdisbursementservice.dto.CreditDisbursementDTO;
-import com.bdgarat.sbmscreditdisbursementservice.entity.CreditDisbursementEntity;
+import com.bdgarat.sbmscreditdisbursementservice.dtos.CreditDisbursementDTO;
+import com.bdgarat.sbmscreditdisbursementservice.entities.CreditDisbursementEntity;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
