@@ -17,6 +17,21 @@
     - Crear namespace
         kubectl create namespace sbms
 
+    - Configurar Helm y repositorio Bitnami
+        curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
+
+        helm repo add bitnami https://charts.bitnami.com/bitnami
+        helm repo update
+   
+    - Crear instancia de PostgreSQL usando Helm y Bitnami repo
+        helm install postgres bitnami/postgresql --namespace sbms --set auth.username=sbms --set auth.password=sup3rs3cur3p4ss --set auth.database=sbms_db
+
+    - Crear instancia de RabbitMQ usando Helm y Bitnami repo
+        helm install rabbitmq bitnami/rabbitmq --namespace sbms --set auth.username=admin --set auth.password=r4bb17sup3rp4ss --set auth.erlangCookie=r4bb17sup3rc00k13
+
+    - Crear instancia de Redis usando Helm y Bitnami repo
+        helm install redis bitnami/redis --namespace sbms --set auth.password=r3d1sr0ckz
+
 1. Empaquetado de Artefactos
 
     docker build -t sbms/sbms-customer:1.0 .
@@ -70,8 +85,6 @@
 echo -n 'texto_a_encriptar' | base64
 
 echo "ZXAtZnJvc3R5LXJpdmVyLWE4enpuYThqLXBvb2xlci5lYXN0dXMyLmF6dXJlLm5lb24udGVjaA==" | base64 --decode
-
-
 
 5. Comando para modificar el host
 

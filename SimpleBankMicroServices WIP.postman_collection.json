@@ -665,6 +665,457 @@
           "response": []
         }
       ]
+    },
+    {
+      "name": "sbms-k8s",
+      "item": [
+        {
+          "name": "gateway",
+          "item": [
+            {
+              "name": "customer-getAll",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{token_mcc}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://sbms.local/customers",
+                  "protocol": "http",
+                  "host": [
+                    "sbms",
+                    "local"
+                  ],
+                  "path": [
+                    "customers"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "customer-getByCu",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{token_mcc}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://sbms.local/customers/cu/72155722",
+                  "protocol": "http",
+                  "host": [
+                    "sbms",
+                    "local"
+                  ],
+                  "path": [
+                    "customers",
+                    "cu",
+                    "72155722"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "account-getAll",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{token_mcc}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://sbms.local/accounts",
+                  "protocol": "http",
+                  "host": [
+                    "sbms",
+                    "local"
+                  ],
+                  "path": [
+                    "accounts"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "account-add-v2",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{token_mcc}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"accountNumber\": \"1008767676567\",\n    \"accountName\": \"SIMPLE\",\n    \"accountBalance\": 0.0,\n    \"customer\": {\n        \"cu\": \"72155723\",\n        \"name\": \"John Doe\",\n        \"address\": \"Av. del Libertador 1300\",\n        \"email\": \"john.doe@testmail.com\",\n        \"mobile\": \"999999999\"\n    }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://sbms.local/accounts",
+                  "protocol": "http",
+                  "host": [
+                    "sbms",
+                    "local"
+                  ],
+                  "path": [
+                    "accounts"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "credit-disbursement-getAll",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{token_mcc}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://sbms.local/credit-disbursements",
+                  "protocol": "http",
+                  "host": [
+                    "sbms",
+                    "local"
+                  ],
+                  "path": [
+                    "credit-disbursements"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "credit-disbursement-add",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{token_mcc}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"amount\": 10500.0,\n    \"termMonths\": 12,\n    \"interestRate\": 10.0,\n    \"accountNumber\": \"1008767676568\",\n    \"customerCu\": \"72155724\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://sbms.local/credit-disbursements",
+                  "protocol": "http",
+                  "host": [
+                    "sbms",
+                    "local"
+                  ],
+                  "path": [
+                    "credit-disbursements"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "security",
+          "item": [
+            {
+              "name": "endpoints",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://sbms.local/.well-known/oauth-authorization-server",
+                  "protocol": "http",
+                  "host": [
+                    "sbms",
+                    "local"
+                  ],
+                  "path": [
+                    ".well-known",
+                    "oauth-authorization-server"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "token-app",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "const body = JSON.parse(responseBody);",
+                      "pm.globals.set('token_mcc',body.access_token)"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "auth": {
+                  "type": "basic",
+                  "basic": [
+                    {
+                      "key": "password",
+                      "value": "secretapp",
+                      "type": "string"
+                    },
+                    {
+                      "key": "username",
+                      "value": "app01",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "key": "grant_type",
+                      "value": "client_credentials",
+                      "type": "text"
+                    },
+                    {
+                      "key": "client_id",
+                      "value": "app01",
+                      "type": "text"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "http://sbms.local/oauth2/token",
+                  "protocol": "http",
+                  "host": [
+                    "sbms",
+                    "local"
+                  ],
+                  "path": [
+                    "oauth2",
+                    "token"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "token-web",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "const body = JSON.parse(responseBody);",
+                      "pm.globals.set('token_mcc',body.access_token)"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "auth": {
+                  "type": "basic",
+                  "basic": [
+                    {
+                      "key": "password",
+                      "value": "secretweb",
+                      "type": "string"
+                    },
+                    {
+                      "key": "username",
+                      "value": "web01",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "key": "grant_type",
+                      "value": "client_credentials",
+                      "type": "text"
+                    },
+                    {
+                      "key": "client_id",
+                      "value": "web01",
+                      "type": "text"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "http://sbms.local/oauth2/token",
+                  "protocol": "http",
+                  "host": [
+                    "sbms",
+                    "local"
+                  ],
+                  "path": [
+                    "oauth2",
+                    "token"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "actuator",
+          "item": [
+            {
+              "name": "actuator",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{token_mcc}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://sbms.local/actuator",
+                  "protocol": "http",
+                  "host": [
+                    "sbms",
+                    "local"
+                  ],
+                  "path": [
+                    "actuator"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "actuator/health",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{token_mcc}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://sbms.local/actuator/health",
+                  "protocol": "http",
+                  "host": [
+                    "sbms",
+                    "local"
+                  ],
+                  "path": [
+                    "actuator",
+                    "health"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "actuator/circuitbreakers",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{token_mcc}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://sbms.local/actuator/circuitbreakers",
+                  "protocol": "http",
+                  "host": [
+                    "sbms",
+                    "local"
+                  ],
+                  "path": [
+                    "actuator",
+                    "circuitbreakers"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        }
+      ]
     }
   ]
 }
