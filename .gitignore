@@ -31,3 +31,5 @@ build/
 
 ### VS Code ###
 .vscode/
+
+.k8s-generic/sbms-secrets.yaml

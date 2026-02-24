@@ -1,0 +1,50 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: sbms-ingress
+  namespace: sbms
+  annotations:
+    nginx.ingress.kubernetes.io/proxy-body-size: "10m"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "120"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "120"
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: sbms.local
+      http:
+        paths:
+          - path: /customers
+            pathType: Prefix
+            backend:
+              service:
+                name: sbms-gateway-service
+                port:
+                  number: 80
+          - path: /accounts
+            pathType: Prefix
+            backend:
+              service:
+                name: sbms-gateway-service
+                port:
+                  number: 80
+          - path: /credit-disbursements
+            pathType: Prefix
+            backend:
+              service:
+                name: sbms-gateway-service
+                port:
+                  number: 80
+          - path: /actuator
+            pathType: Prefix
+            backend:
+              service:
+                name: sbms-gateway-service
+                port:
+                  number: 80
+          - path: /oauth2
+            pathType: Prefix
+            backend:
+              service:
+                name: sbms-security-service
+                port:
+                  number: 80

@@ -15,27 +15,27 @@
         C:\Windows\System32\drivers\etc\hosts
         Guardar los cambios y reiniciar
     - Crear namespace
-        kubectl create namespace stech
+        kubectl create namespace sbms
 
 1. Empaquetado de Artefactos
 
-    docker build -t bdgarat/sbms-customer:1.0 .
-    docker build -t bdgarat/sbms-account:1.0 .
-    docker build -t bdgarat/sbms-credit-disbursement:1.0 .
-    docker build -t bdgarat/sbms-notification:1.0 .
-    docker build -t bdgarat/sbms-security:1.0 .
-    docker build -t bdgarat/sbms-gateway:1.0 .
+    docker build -t sbms/sbms-customer:1.0 .
+    docker build -t sbms/sbms-account:1.0 .
+    docker build -t sbms/sbms-credit-disbursement:1.0 .
+    docker build -t sbms/sbms-notification:1.0 .
+    docker build -t sbms/sbms-security:1.0 .
+    docker build -t sbms/sbms-gateway:1.0 .
 
 2. Comando de publicacion en Docker Hub
   
     Inicia sesión en https://hub.docker.com/
     docker login
-    docker push bdgarat/sbms-customer:1.0
-    docker push bdgarat/sbms-account:1.0
-    docker push bdgarat/sbms-credit-disbursement:1.0
-    docker push bdgarat/sbms-notification:1.0
-    docker push bdgarat/sbms-security:1.0
-    docker push bdgarat/sbms-gateway:1.0
+    docker push sbms/sbms-customer:1.0
+    docker push sbms/sbms-account:1.0
+    docker push sbms/sbms-credit-disbursement:1.0
+    docker push sbms/sbms-notification:1.0
+    docker push sbms/sbms-security:1.0
+    docker push sbms/sbms-gateway:1.0
 
 3. Comando para interactuar con aks
 
@@ -53,8 +53,8 @@
 
     kubectl get pods -n lic
 
-    kubectl logs sbms-customer-service-69dbddb4c6-62fkg -n stech
-    kubectl logs -f sbms-customer-service-69dbddb4c6-62fkg -n stech
+    kubectl logs sbms-customer-service-69dbddb4c6-62fkg -n sbms
+    kubectl logs -f sbms-customer-service-69dbddb4c6-62fkg -n sbms
 
     ### Cmd ver ingress
 

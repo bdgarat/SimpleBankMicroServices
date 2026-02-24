@@ -1,4 +1,4 @@
-# Simple Bank Micro Services
+ # Simple Bank Micro Services
 
 ## ¿De que ese trata el proyecto? 
 Es una implementación simulada de microservicios que podríamos encontrar en un banco u otra entidad financiera. Sobre la misma existe un servicio encargado de registrar e informar los clientes (sbms-customer-service), quienes pueden abrir cuentas a su nombre y llevar un registro de su balance (sbms-account-service) y realizar desembolsos de credito, los cuales modifican tales montos (sbms-credit-disbursement-service). Adicionalmente a tal servicios core del ejercicio propuesto, se encuentran el servicio de notificacion (sbms-notification-service) que se encarga de recibir de forma asincronica el medido de enviar un alerta a un email informado. Adicionalmente, se encuentra la gestión y acceso de tales servicios a través de (sbms-gateway-service) y la seguridad provista por (sbms-security-service).
